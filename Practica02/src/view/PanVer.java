@@ -17,7 +17,7 @@ public class PanVer extends JPanel {
 	private JTextField tfNombre, tfFechaNacimiento, tfSalario;
 	private JLabel lblNombre, lblFechaNacimiento, lblSalario;
 	private JButton btnPrimero, btnSiguiente, btnAnterior, btnUltimo;
-	
+
 	private CtrlEmpleado ctrlEmpleado;
 
 	/**
@@ -25,11 +25,11 @@ public class PanVer extends JPanel {
 	 */
 	public PanVer(CtrlEmpleado ctrl) {
 		ctrlEmpleado = ctrl;
-		
+
 		setLayout(null);
 
 		addComponents();
-		
+
 		addListeners();
 
 	}
@@ -82,8 +82,9 @@ public class PanVer extends JPanel {
 		btnSiguiente = new JButton("Avanzar");
 		btnSiguiente.setBounds(125, 197, 85, 21);
 		add(btnSiguiente);
-		
+
 		btnAnterior = new JButton("Retroceder");
+		btnAnterior.setEnabled(false);
 		btnAnterior.setBounds(220, 197, 127, 21);
 		add(btnAnterior);
 
@@ -91,14 +92,6 @@ public class PanVer extends JPanel {
 		btnUltimo.setBounds(357, 196, 85, 21);
 		add(btnUltimo);
 
-		
-		
-		
-
-		
-		
-		
-		
 	}
 
 	private void addListeners() {
@@ -106,7 +99,6 @@ public class PanVer extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				mostrarAnteriorEmpleado();
 			}
-		
 
 			private void mostrarAnteriorEmpleado() {
 				// SI SE PUEDE RETROCEDER, RETROCEDE Y MUESTRA EL EMPLEADO ANTERIOR
@@ -125,11 +117,30 @@ public class PanVer extends JPanel {
 						btnSiguiente.setEnabled(true);
 					}
 
-					
 				}
 
 			}
 		});
+
+		btnPrimero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ctrlEmpleado.primerEmpleado();
+				mostrarEmpleado();
+				btnSiguiente.setEnabled(true);
+				btnAnterior.setEnabled(false);
+			}
+		});
+		
+		btnUltimo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ctrlEmpleado.ultimoEmpleado();
+				mostrarEmpleado();
+				btnSiguiente.setEnabled(false);
+				btnAnterior.setEnabled(true);
+			}
+		});
+
 
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -138,7 +149,7 @@ public class PanVer extends JPanel {
 					// SI LA SIGUIENTE VEZ QUE AVANCES ES IGUAL EL ÍNDICE AL TAMAÑO DE LA LISTA
 					// SIGNIFICA QUE NO HAY MÁS EMPLEADOS PARA AVANZAR
 					btnSiguiente.setEnabled(false);
-					
+
 				} else {
 					// DE LO CONTRARIO QUE *INTENTE* AVANZAR CON NORMALIDAD
 					mostrarSiguienteEmpleado();
@@ -150,25 +161,23 @@ public class PanVer extends JPanel {
 				// SI HAY SIGUIENTE EMPLEADO, VISUALIZA EL SIGUIENTE
 				if (ctrlEmpleado.siguienteEmpleado()) {
 					mostrarEmpleado();
-					
+
 					// AVANZAS UN EMPLEADO POR ENDE EXISTE UN EMPLEADO AL QUE RETROCEDER
 					btnAnterior.setEnabled(true);
 
 				}
 
 			}
-			
 
 		});
-		
-	
+
 	}
-	
+
 	private void mostrarEmpleado() {
 		tfNombre.setText(ctrlEmpleado.getListadoEmpleado().get(ctrlEmpleado.getIndex()).getNombre());
-		tfFechaNacimiento.setText(ctrlEmpleado.parseFechatoCadena(ctrlEmpleado.getListadoEmpleado().get(ctrlEmpleado.getIndex()).getFechaNacimiento()));
+		tfFechaNacimiento.setText(ctrlEmpleado.parseFechatoCadena(
+				ctrlEmpleado.getListadoEmpleado().get(ctrlEmpleado.getIndex()).getFechaNacimiento()));
 		tfSalario.setText(ctrlEmpleado.getListadoEmpleado().get(ctrlEmpleado.getIndex()).getSalario() + "");
 	}
-	
-	
+
 }

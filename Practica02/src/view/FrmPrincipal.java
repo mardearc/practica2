@@ -1,7 +1,5 @@
 package view;
 
-
-
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -118,7 +116,7 @@ public class FrmPrincipal extends JFrame {
 //
 //		// INICIALIZACIÓN Y ATRIBUTOS ETIQUETA CON FECHA NACIMIENTO DEL EMPLEADO
 //		lblFechaNacimiento = new JLabel("Fecha Nacimiento");
-//		lblFechaNacimiento.setHorizontalAlignment(SwingConstants.CENTER);
+//		lblFechaNacimiento.setHorizontalAlignment(SwingConstts.CENTER);
 //		lblFechaNacimiento.setBounds(0, 66, 213, 74);
 //		panInfo.add(lblFechaNacimiento);
 //
