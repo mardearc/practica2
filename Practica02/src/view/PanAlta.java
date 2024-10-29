@@ -73,6 +73,7 @@ public class PanAlta extends JPanel {
 		add(btnAdd);
 
 		btnLimpiar = new JButton("Borrar");
+		
 		btnLimpiar.setBounds(247, 196, 85, 21);
 		add(btnLimpiar);
 		
@@ -90,12 +91,27 @@ public class PanAlta extends JPanel {
 	}
 
 	private void addListeners(CtrlEmpleado ctrlEmpleado) {
+		
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tfNombre.getText().length() > 0 && tfFechaNacimiento.getText().length() > 0 && tfSalario.getText().length() > 0) {
 					ctrlEmpleado.addEmpleado((new Empleado(tfNombre.getText(), tfDni.getText(), ctrlEmpleado.parseCadenatoFecha(tfFechaNacimiento.getText()),Double.parseDouble(tfSalario.getText()))));
+					tfNombre.setText("");
+					tfFechaNacimiento.setText("");
+					tfDni.setText("");
+					tfSalario.setText("");
 				}
 			}
 		});
+		
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tfNombre.setText("");
+				tfFechaNacimiento.setText("");
+				tfDni.setText("");
+				tfSalario.setText("");
+			}
+		});
+		
 	}
 }

@@ -195,32 +195,5 @@ public class FrmPrincipal extends JFrame {
 			}
 		});
 	}
-		
-//		
-//
-//		btnAdd.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				// SI HAY CONTENIDO EN LOS CAMPOS, AÑADIR EL NUEVO EMPLEADO
-//				if (tfNombre.getText().length() > 0 && tfFechaNacimiento.getText().length() > 0
-//						&& tfSalario.getText().length() > 0) {
-//					ctrlEmpleado.addEmpleado(new Empleado(tfNombre.getText(), tfFechaNacimiento.getText(),
-//							Double.parseDouble(tfSalario.getText())));
-//					desactivarAdd();
-//				}
-//
-//			}
-//		});
-//		
-//		btnLimpiar.addActionListener(new ActionListener() {
-//			// LIMPIAR EL CONTENIDO DE LOS CAMPOS
-//			public void actionPerformed(ActionEvent e) {
-//				tfNombre.setText("");
-//				tfFechaNacimiento.setText("");
-//				tfSalario.setText("");
-//
-//			}
-//		});
-//	}
-//
 
 }
