@@ -1,6 +1,10 @@
 package controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import model.Empleado;
@@ -14,11 +18,11 @@ public class CtrlEmpleado {
   public CtrlEmpleado() {
 	  index = 0;
 	  
-	  listado.add(new Empleado("Emanuel E.", "05-04-2005", 9999.99));
-	  listado.add(new Empleado("Paula S.", "16-06-2003", 9999.99));
-	  listado.add(new Empleado("Jesús M.", "05-12-2001", 5656.99));
-	  listado.add(new Empleado("Jesús R.", "25-05-2003", 2345.99));
-	  listado.add(new Empleado("Abel G.", "26-10-2002", 1847.99));
+	  listado.add(new Empleado("Emanuel E.", "12131415K", parseCadenatoFecha("05-04-2005"), 9999.99));
+	  listado.add(new Empleado("Paula S.", "21222324J", parseCadenatoFecha("16-06-2003"), 9999.99));
+	  listado.add(new Empleado("Jesús M.", "31323334L", parseCadenatoFecha("05-12-2001"), 5656.99));
+	  listado.add(new Empleado("Jesús R.", "41424344P", parseCadenatoFecha("25-05-2003"), 2345.99));
+	  listado.add(new Empleado("Abel G.", "51525354G", parseCadenatoFecha("26-10-2002"), 1847.99));
 	  
   }
   
@@ -65,5 +69,24 @@ public class CtrlEmpleado {
 	return hayAnteriorEmpleado;
 	  
   }
+  
+  public GregorianCalendar parseCadenatoFecha(String dateStr) {
+      SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+      GregorianCalendar calendar = new GregorianCalendar();
 
+      try {
+          Date date = dateFormat.parse(dateStr);
+          calendar.setTime(date);
+      } catch (ParseException e) {
+          System.out.println("Formato de fecha incorrecto. Debe ser dd-MM-yyyy.");
+          e.printStackTrace();
+      }
+
+      return calendar;
+  }
+
+  public String parseFechatoCadena(GregorianCalendar calendar) {
+      SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+      return dateFormat.format(calendar.getTime());
+  }
 }

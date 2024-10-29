@@ -166,7 +166,9 @@ public class PanVer extends JPanel {
 	
 	private void mostrarEmpleado() {
 		tfNombre.setText(ctrlEmpleado.getListadoEmpleado().get(ctrlEmpleado.getIndex()).getNombre());
-		tfFechaNacimiento.setText(ctrlEmpleado.getListadoEmpleado().get(ctrlEmpleado.getIndex()).getFechaNacimiento());
+		tfFechaNacimiento.setText(ctrlEmpleado.parseFechatoCadena(ctrlEmpleado.getListadoEmpleado().get(ctrlEmpleado.getIndex()).getFechaNacimiento()));
 		tfSalario.setText(ctrlEmpleado.getListadoEmpleado().get(ctrlEmpleado.getIndex()).getSalario() + "");
 	}
+	
+	
 }
