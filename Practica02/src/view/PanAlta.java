@@ -7,13 +7,17 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import controller.CtrlEmpleado;
+import model.Empleado;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanAlta extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField tfNombre, tfFechaNacimiento, tfSalario;
-	private JButton btnAlta, btnBorrar;
+	private JButton btnAdd, btnLimpiar;
 	private JLabel lblFechaNacimiento, lblNombre, lblSalario;
+	private JTextField tfDni;
 
 	/**
 	 * Create the panel.
@@ -23,18 +27,19 @@ public class PanAlta extends JPanel {
 
 		addComponents();
 
+		addListeners(ctrlEmpleado);
 	}
 
 	private void addComponents() {
 		tfFechaNacimiento = new JTextField();
-		tfFechaNacimiento.setBounds(181, 85, 213, 37);
+		tfFechaNacimiento.setBounds(181, 60, 213, 37);
 		tfFechaNacimiento.setText("");
 		tfFechaNacimiento.setEditable(true);
 		tfFechaNacimiento.setColumns(10);
 		add(tfFechaNacimiento);
 
 		lblFechaNacimiento = new JLabel("Fecha Nacimiento");
-		lblFechaNacimiento.setBounds(0, 66, 213, 74);
+		lblFechaNacimiento.setBounds(0, 41, 213, 74);
 		lblFechaNacimiento.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblFechaNacimiento);
 
@@ -51,23 +56,46 @@ public class PanAlta extends JPanel {
 		add(lblNombre);
 
 		lblSalario = new JLabel("Salario");
-		lblSalario.setBounds(0, 130, 213, 74);
+		lblSalario.setBounds(0, 84, 213, 74);
 		lblSalario.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblSalario);
 
 		tfSalario = new JTextField();
-		tfSalario.setBounds(181, 149, 213, 37);
+		tfSalario.setBounds(181, 103, 213, 37);
 		tfSalario.setText("");
 		tfSalario.setEditable(true);
 		tfSalario.setColumns(10);
 		add(tfSalario);
 
-		btnAlta = new JButton("Aceptar");
-		btnAlta.setBounds(142, 197, 85, 21);
-		add(btnAlta);
+		btnAdd = new JButton("Aceptar");
+		
+		btnAdd.setBounds(142, 197, 85, 21);
+		add(btnAdd);
 
-		btnBorrar = new JButton("Borrar");
-		btnBorrar.setBounds(247, 196, 85, 21);
-		add(btnBorrar);
+		btnLimpiar = new JButton("Borrar");
+		btnLimpiar.setBounds(247, 196, 85, 21);
+		add(btnLimpiar);
+		
+		JLabel lblDni = new JLabel("DNI");
+		lblDni.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDni.setBounds(0, 125, 213, 74);
+		add(lblDni);
+		
+		tfDni = new JTextField();
+		tfDni.setText("");
+		tfDni.setEditable(true);
+		tfDni.setColumns(10);
+		tfDni.setBounds(181, 144, 213, 37);
+		add(tfDni);
+	}
+
+	private void addListeners(CtrlEmpleado ctrlEmpleado) {
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tfNombre.getText().length() > 0 && tfFechaNacimiento.getText().length() > 0 && tfSalario.getText().length() > 0) {
+					ctrlEmpleado.addEmpleado((new Empleado(tfNombre.getText(), tfDni.getText(), ctrlEmpleado.parseCadenatoFecha(tfFechaNacimiento.getText()),Double.parseDouble(tfSalario.getText()))));
+				}
+			}
+		});
 	}
 }

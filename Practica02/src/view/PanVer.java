@@ -80,12 +80,12 @@ public class PanVer extends JPanel {
 		add(btnPrimero);
 
 		btnSiguiente = new JButton("Avanzar");
-		btnSiguiente.setBounds(125, 197, 85, 21);
+		btnSiguiente.setBounds(262, 196, 85, 21);
 		add(btnSiguiente);
 
 		btnAnterior = new JButton("Retroceder");
 		btnAnterior.setEnabled(false);
-		btnAnterior.setBounds(220, 197, 127, 21);
+		btnAnterior.setBounds(125, 196, 127, 21);
 		add(btnAnterior);
 
 		btnUltimo = new JButton("Último");
