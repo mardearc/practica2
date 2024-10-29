@@ -7,8 +7,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import controller.CtrlEmpleado;
+import controller.CtrlError;
 import model.Empleado;
 import java.awt.event.ActionListener;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 
 public class PanAlta extends JPanel {
@@ -18,6 +20,7 @@ public class PanAlta extends JPanel {
 	private JButton btnAdd, btnLimpiar;
 	private JLabel lblFechaNacimiento, lblNombre, lblSalario;
 	private JTextField tfDni;
+	static CtrlError ctrlError = new CtrlError();
 
 	/**
 	 * Create the panel.
@@ -32,14 +35,14 @@ public class PanAlta extends JPanel {
 
 	private void addComponents() {
 		tfFechaNacimiento = new JTextField();
-		tfFechaNacimiento.setBounds(181, 60, 213, 37);
+		tfFechaNacimiento.setBounds(181, 144, 213, 37);
 		tfFechaNacimiento.setText("");
 		tfFechaNacimiento.setEditable(true);
 		tfFechaNacimiento.setColumns(10);
 		add(tfFechaNacimiento);
 
 		lblFechaNacimiento = new JLabel("Fecha Nacimiento");
-		lblFechaNacimiento.setBounds(0, 41, 213, 74);
+		lblFechaNacimiento.setBounds(0, 125, 213, 74);
 		lblFechaNacimiento.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblFechaNacimiento);
 
@@ -79,14 +82,14 @@ public class PanAlta extends JPanel {
 		
 		JLabel lblDni = new JLabel("DNI");
 		lblDni.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDni.setBounds(0, 125, 213, 74);
+		lblDni.setBounds(0, 41, 213, 74);
 		add(lblDni);
 		
 		tfDni = new JTextField();
 		tfDni.setText("");
 		tfDni.setEditable(true);
 		tfDni.setColumns(10);
-		tfDni.setBounds(181, 144, 213, 37);
+		tfDni.setBounds(181, 60, 213, 37);
 		add(tfDni);
 	}
 
@@ -94,12 +97,20 @@ public class PanAlta extends JPanel {
 		
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (tfNombre.getText().length() > 0 && tfFechaNacimiento.getText().length() > 0 && tfSalario.getText().length() > 0) {
+				if (tfNombre.getText().length() > 0 && tfFechaNacimiento.getText().length() > 0 && tfSalario.getText().length() > 0 && ctrlError.controlFecha(ctrlEmpleado.parseCadenatoFecha(tfFechaNacimiento.getText())) && ctrlError.controlSalario(Double.parseDouble(tfSalario.getText()))) {
 					ctrlEmpleado.addEmpleado((new Empleado(tfNombre.getText(), tfDni.getText(), ctrlEmpleado.parseCadenatoFecha(tfFechaNacimiento.getText()),Double.parseDouble(tfSalario.getText()))));
+					tfFechaNacimiento.setBackground(Color.WHITE);
+					tfSalario.setBackground(Color.WHITE);
 					tfNombre.setText("");
 					tfFechaNacimiento.setText("");
 					tfDni.setText("");
 					tfSalario.setText("");
+				}
+				if(!ctrlError.controlFecha(ctrlEmpleado.parseCadenatoFecha(tfFechaNacimiento.getText()))) {
+					tfFechaNacimiento.setBackground(Color.RED);
+				}
+				if(!ctrlError.controlSalario(Double.parseDouble(tfSalario.getText()))) {
+					tfSalario.setBackground(Color.RED);
 				}
 			}
 		});
@@ -110,6 +121,9 @@ public class PanAlta extends JPanel {
 				tfFechaNacimiento.setText("");
 				tfDni.setText("");
 				tfSalario.setText("");
+				
+				tfFechaNacimiento.setBackground(Color.WHITE);
+				tfSalario.setBackground(Color.WHITE);
 			}
 		});
 		

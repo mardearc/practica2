@@ -8,7 +8,7 @@ public class Empleado {
     private String dni;
     private GregorianCalendar fechaNacimiento;
     private double salario;
-    private double salMax;
+    public static double salMax = 10000;
    
 
     // Constructor
@@ -17,7 +17,7 @@ public class Empleado {
         this.fechaNacimiento = fechaNacimiento;
         this.salario = salario;
         numEmple++;
-        this.salMax = 10000;
+        this.salMax = salMax;
         this.dni = dni;
     }
 

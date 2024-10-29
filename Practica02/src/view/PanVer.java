@@ -19,6 +19,7 @@ public class PanVer extends JPanel {
 	private JButton btnPrimero, btnSiguiente, btnAnterior, btnUltimo;
 
 	private CtrlEmpleado ctrlEmpleado;
+	private JTextField tfDni;
 
 	/**
 	 * Create the panel.
@@ -36,14 +37,14 @@ public class PanVer extends JPanel {
 
 	private void addComponents() {
 		tfFechaNacimiento = new JTextField();
-		tfFechaNacimiento.setBounds(181, 85, 213, 37);
+		tfFechaNacimiento.setBounds(181, 106, 213, 37);
 		tfFechaNacimiento.setText("05-04-2005");
 		tfFechaNacimiento.setEditable(false);
 		tfFechaNacimiento.setColumns(10);
 		add(tfFechaNacimiento);
 
 		lblFechaNacimiento = new JLabel("Fecha Nacimiento");
-		lblFechaNacimiento.setBounds(0, 66, 213, 74);
+		lblFechaNacimiento.setBounds(0, 87, 213, 74);
 		lblFechaNacimiento.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblFechaNacimiento);
 
@@ -91,6 +92,18 @@ public class PanVer extends JPanel {
 		btnUltimo = new JButton("Último");
 		btnUltimo.setBounds(357, 196, 85, 21);
 		add(btnUltimo);
+		
+		tfDni = new JTextField();
+		tfDni.setText("12345678K");
+		tfDni.setEditable(false);
+		tfDni.setColumns(10);
+		tfDni.setBounds(181, 63, 213, 37);
+		add(tfDni);
+		
+		JLabel lblDni = new JLabel("DNI");
+		lblDni.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDni.setBounds(0, 44, 213, 74);
+		add(lblDni);
 
 	}
 
@@ -177,7 +190,7 @@ public class PanVer extends JPanel {
 		tfNombre.setText(ctrlEmpleado.getListadoEmpleado().get(ctrlEmpleado.getIndex()).getNombre());
 		tfFechaNacimiento.setText(ctrlEmpleado.parseFechatoCadena(
 				ctrlEmpleado.getListadoEmpleado().get(ctrlEmpleado.getIndex()).getFechaNacimiento()));
+		tfDni.setText(ctrlEmpleado.getListadoEmpleado().get(ctrlEmpleado.getIndex()).getDni());
 		tfSalario.setText(ctrlEmpleado.getListadoEmpleado().get(ctrlEmpleado.getIndex()).getSalario() + "");
 	}
-
 }
