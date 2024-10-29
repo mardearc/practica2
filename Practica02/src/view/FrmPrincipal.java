@@ -1,6 +1,14 @@
 package view;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/mardearc/practica2.git
 import java.awt.CardLayout;
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/mardearc/practica2.git
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
