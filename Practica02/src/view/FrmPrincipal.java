@@ -1,6 +1,8 @@
 package view;
 
+
 import java.awt.CardLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,7 +21,7 @@ public class FrmPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	// CREACIÓN PANELES
-	private JPanel panPrincipal, panInfo, panBotones, panVer, panAlta;
+	private JPanel panPrincipal, panInfo, panBotones, panVer, panAlta, panAcercaDe;
 	// CREACIÓN CAMPOS DE TEXTO
 	private JTextField tfNombre, tfFechaNacimiento, tfSalario;
 	// CREACIÓN CONTROLLER
@@ -89,6 +91,11 @@ public class FrmPrincipal extends JFrame {
 		panAlta = new PanAlta(ctrlEmpleado);
 		panAlta.setVisible(false);
 		panPrincipal.add(panAlta, "panAlta");
+		
+		//INCICIALIZACION PANACERCADE
+		panAcercaDe = new PanAcercaDe();
+		panAlta.setVisible(false);
+		panPrincipal.add(panAcercaDe, "name_1702339033446700");
 		
 //		// INICIALIZACIÓN Y ATRIBUTOS PANEL CON DATOS DEL EMPLEADO
 //		panInfo = new JPanel();
@@ -169,6 +176,7 @@ public class FrmPrincipal extends JFrame {
 		mntmMenuVer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panVer.setVisible(true);
+				panAcercaDe.setVisible(false);
 				panAlta.setVisible(false);
 			}
 		});
@@ -176,7 +184,16 @@ public class FrmPrincipal extends JFrame {
 		mntmMenuAlta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panVer.setVisible(false);
+				panAcercaDe.setVisible(false);
 				panAlta.setVisible(true);
+			}
+		});
+		
+		mntmMenuAcercaDe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panVer.setVisible(false);
+				panAlta.setVisible(false);
+				panAcercaDe.setVisible(true);
 			}
 		});
 	}
