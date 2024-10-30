@@ -92,14 +92,14 @@ public class PanVer extends JPanel {
 		btnUltimo = new JButton("Último");
 		btnUltimo.setBounds(357, 196, 85, 21);
 		add(btnUltimo);
-		
+
 		tfDni = new JTextField();
 		tfDni.setText("12345678K");
 		tfDni.setEditable(false);
 		tfDni.setColumns(10);
 		tfDni.setBounds(181, 63, 213, 37);
 		add(tfDni);
-		
+
 		JLabel lblDni = new JLabel("DNI");
 		lblDni.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDni.setBounds(0, 44, 213, 74);
@@ -143,17 +143,16 @@ public class PanVer extends JPanel {
 				btnAnterior.setEnabled(false);
 			}
 		});
-		
+
 		btnUltimo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				ctrlEmpleado.ultimoEmpleado();
 				mostrarEmpleado();
 				btnSiguiente.setEnabled(false);
 				btnAnterior.setEnabled(true);
 			}
 		});
-
 
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

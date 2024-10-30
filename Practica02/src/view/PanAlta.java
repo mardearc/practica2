@@ -104,23 +104,30 @@ public class PanAlta extends JPanel {
 							ctrlEmpleado.parseCadenatoFecha(tfFechaNacimiento.getText()),
 							Double.parseDouble(tfSalario.getText()))));
 
-					System.out.println(tfFechaNacimiento.getText());
 					tfFechaNacimiento.setBackground(Color.WHITE);
 					tfSalario.setBackground(Color.WHITE);
 					tfNombre.setText("");
 					tfFechaNacimiento.setText("");
 					tfDni.setText("");
 					tfSalario.setText("");
-				
+
 				} else {
 					if (!ctrlError.controlFecha(tfFechaNacimiento.getText())) {
 						tfFechaNacimiento.setBackground(Color.RED);
+					} else {
+						tfFechaNacimiento.setBackground(Color.WHITE);
 					}
-					if (!ctrlError.controlSalario(Double.parseDouble(tfSalario.getText()))) {
+					if (ctrlError.esDouble(tfSalario.getText())) {
+						if (!ctrlError.controlSalario(Double.parseDouble(tfSalario.getText()))) {
+							tfSalario.setBackground(Color.RED);
+						} else {
+							tfSalario.setBackground(Color.WHITE);
+						}
+					} else {
 						tfSalario.setBackground(Color.RED);
 					}
-				} 
-				
+				}
+
 			}
 		});
 

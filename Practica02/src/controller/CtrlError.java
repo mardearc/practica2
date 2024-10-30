@@ -1,8 +1,5 @@
 package controller;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import model.Empleado;
 
 public class CtrlError {
@@ -21,4 +18,14 @@ public class CtrlError {
 	public boolean controlSalario(Double salario) {
 		return salario < Empleado.salMax ? true : false;
 	}
+
+	public boolean esDouble(String cadena) {
+		try {
+			Double.parseDouble(cadena);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+
 }
