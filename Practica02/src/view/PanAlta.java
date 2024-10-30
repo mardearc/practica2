@@ -71,20 +71,20 @@ public class PanAlta extends JPanel {
 		add(tfSalario);
 
 		btnAdd = new JButton("Aceptar");
-		
+
 		btnAdd.setBounds(142, 197, 85, 21);
 		add(btnAdd);
 
 		btnLimpiar = new JButton("Borrar");
-		
+
 		btnLimpiar.setBounds(247, 196, 85, 21);
 		add(btnLimpiar);
-		
+
 		JLabel lblDni = new JLabel("DNI");
 		lblDni.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDni.setBounds(0, 41, 213, 74);
 		add(lblDni);
-		
+
 		tfDni = new JTextField();
 		tfDni.setText("");
 		tfDni.setEditable(true);
@@ -94,38 +94,47 @@ public class PanAlta extends JPanel {
 	}
 
 	private void addListeners(CtrlEmpleado ctrlEmpleado) {
-		
+
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (tfNombre.getText().length() > 0 && tfFechaNacimiento.getText().length() > 0 && tfSalario.getText().length() > 0 && ctrlError.controlFecha(ctrlEmpleado.parseCadenatoFecha(tfFechaNacimiento.getText())) && ctrlError.controlSalario(Double.parseDouble(tfSalario.getText()))) {
-					ctrlEmpleado.addEmpleado((new Empleado(tfNombre.getText(), tfDni.getText(), ctrlEmpleado.parseCadenatoFecha(tfFechaNacimiento.getText()),Double.parseDouble(tfSalario.getText()))));
+				if (tfNombre.getText().length() > 0 && tfFechaNacimiento.getText().length() > 0
+						&& tfSalario.getText().length() > 0 && ctrlError.controlFecha(tfFechaNacimiento.getText())
+						&& ctrlError.controlSalario(Double.parseDouble(tfSalario.getText()))) {
+					ctrlEmpleado.addEmpleado((new Empleado(tfNombre.getText(), tfDni.getText(),
+							ctrlEmpleado.parseCadenatoFecha(tfFechaNacimiento.getText()),
+							Double.parseDouble(tfSalario.getText()))));
+
+					System.out.println(tfFechaNacimiento.getText());
 					tfFechaNacimiento.setBackground(Color.WHITE);
 					tfSalario.setBackground(Color.WHITE);
 					tfNombre.setText("");
 					tfFechaNacimiento.setText("");
 					tfDni.setText("");
 					tfSalario.setText("");
-				}
-				if(!ctrlError.controlFecha(ctrlEmpleado.parseCadenatoFecha(tfFechaNacimiento.getText()))) {
-					tfFechaNacimiento.setBackground(Color.RED);
-				}
-				if(!ctrlError.controlSalario(Double.parseDouble(tfSalario.getText()))) {
-					tfSalario.setBackground(Color.RED);
-				}
+				
+				} else {
+					if (!ctrlError.controlFecha(tfFechaNacimiento.getText())) {
+						tfFechaNacimiento.setBackground(Color.RED);
+					}
+					if (!ctrlError.controlSalario(Double.parseDouble(tfSalario.getText()))) {
+						tfSalario.setBackground(Color.RED);
+					}
+				} 
+				
 			}
 		});
-		
+
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tfNombre.setText("");
 				tfFechaNacimiento.setText("");
 				tfDni.setText("");
 				tfSalario.setText("");
-				
+
 				tfFechaNacimiento.setBackground(Color.WHITE);
 				tfSalario.setBackground(Color.WHITE);
 			}
 		});
-		
+
 	}
 }

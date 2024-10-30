@@ -87,6 +87,7 @@ public class CtrlEmpleado {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		GregorianCalendar calendar = new GregorianCalendar();
 
+		
 		try {
 			Date date = dateFormat.parse(dateStr);
 			calendar.setTime(date);
